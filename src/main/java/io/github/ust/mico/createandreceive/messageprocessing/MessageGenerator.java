@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Component;
 
 import io.github.ust.mico.createandreceive.Sender;
 import io.github.ust.mico.createandreceive.kafka.MicoCloudEventImpl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Component
 public class MessageGenerator {
 
   @Autowired
