@@ -43,7 +43,7 @@ public class MessageGenerator {
     cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
     // Set return address.
     cloudEvent.setReturnTopic("car");
-    log.info("Created msg: '{}'", cloudEvent);
+    log.debug("Created msg: '{}'", cloudEvent);
     sender.send(cloudEvent);
   }
 }
