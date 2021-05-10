@@ -3,6 +3,8 @@ package io.github.ust.mico.createandreceive.kafka;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,12 +36,12 @@ public class KafkaSenderConfig {
   }
 
   @Bean
-  public ProducerFactory<String, String> producerFactory() {
+  public ProducerFactory<String, MicoCloudEventImpl<JsonNode>> producerFactory() {
     return new DefaultKafkaProducerFactory<>(producerConfigs());
   }
 
   @Bean
-  public KafkaTemplate<String, String> kafkaTemplate() {
+  public KafkaTemplate<String, MicoCloudEventImpl<JsonNode>> kafkaTemplate() {
     return new KafkaTemplate<>(producerFactory());
   }
 }
