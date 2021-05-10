@@ -17,7 +17,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer2;
 
-import io.github.ust.mico.requestreply.MessageListener;
+import io.github.ust.mico.createandreceive.MessageListener;
 import lombok.extern.slf4j.Slf4j;
 
 @EnableKafka
