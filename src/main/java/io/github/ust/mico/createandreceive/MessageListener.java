@@ -20,9 +20,6 @@ public class MessageListener {
     @Autowired
     SimpMessagingTemplate websocketsTemplate;
 
-    // @Autowired
-    // private Service service;
-
     /**
      * Entry point for incoming messages from kafka.
      *
@@ -32,7 +29,6 @@ public class MessageListener {
     public void receive(MicoCloudEventImpl<JsonNode> cloudEvent) {
         log.debug("Received CloudEvent message: {}", cloudEvent);
         websocketsTemplate.convertAndSend("/topic/messaging-bridge", cloudEvent);
-        // service.processIncomingMessage(cloudEvent);
     }
 
 }
