@@ -13,8 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class MessageGenerator {
 
-  @Autowired
-  private CloudEventManipulator cloudEventManipulator;
+  // @Autowired
+  // CloudEventManipulator cloudEventManipulator;
 
   @Autowired
   private Sender sender;
@@ -39,6 +39,7 @@ public class MessageGenerator {
     MicoCloudEventImpl<JsonNode> cloudEvent = new MicoCloudEventImpl<JsonNode>();
     cloudEvent.setRandomId();
     cloudEvent.setBaseCloudEvent(cloudEvent);
+    CloudEventManipulator cloudEventManipulator = new CloudEventManipulator();
     cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
     // Set return address.
     cloudEvent.setReturnTopic("car");
