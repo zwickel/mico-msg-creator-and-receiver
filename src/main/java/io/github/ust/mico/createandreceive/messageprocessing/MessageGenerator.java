@@ -38,6 +38,7 @@ public class MessageGenerator {
 
   private void produceMessage() {
     MicoCloudEventImpl<JsonNode> cloudEvent = new MicoCloudEventImpl<JsonNode>();
+    log.info("Created msg: '{}'", cloudEvent);
     cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
     log.info("Create msg: '{}'", cloudEvent);
     websocketsTemplate.convertAndSend("/topic/messaging-bridge", cloudEvent);
