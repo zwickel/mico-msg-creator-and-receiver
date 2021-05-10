@@ -1,13 +1,12 @@
-package io.github.ust.mico.createandreceive.messageprocessing;
+package io.github.ust.mico.createandreceive;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
-import io.github.ust.mico.createandreceive.Sender;
 import io.github.ust.mico.createandreceive.kafka.MicoCloudEventImpl;
+import io.github.ust.mico.createandreceive.messageprocessing.CloudEventManipulator;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -18,12 +17,10 @@ public class MessageGenerator {
   private CloudEventManipulator cloudEventManipulator;
 
   @Autowired
-  SimpMessagingTemplate websocketsTemplate;
-
-  @Autowired
   private Sender sender;
 
-  public MessageGenerator() {
+  public MessageGenerator(Sender sender) {
+    this.sender = sender;
     try {
       startProduction();
     } catch (InterruptedException ie) {
@@ -46,7 +43,6 @@ public class MessageGenerator {
     // Set return address.
     cloudEvent.setReturnTopic("car");
     log.info("Created msg: '{}'", cloudEvent);
-    websocketsTemplate.convertAndSend("/topic/messaging-bridge", cloudEvent);
     sender.send(cloudEvent);
   }
 }
