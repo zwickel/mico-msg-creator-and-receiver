@@ -7,7 +7,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import io.github.ust.mico.createandreceive.Sender;
 import io.github.ust.mico.createandreceive.kafka.MicoCloudEventImpl;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MessageGenerator {
 
   @Autowired
@@ -36,7 +38,8 @@ public class MessageGenerator {
 
   private void produceMessage() {
     MicoCloudEventImpl<JsonNode> cloudEvent = new MicoCloudEventImpl<JsonNode>();
-    cloudEventManipulator.setMissingHeaderFields(cloudEvent, null);
+    cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
+    log.info("Create msg: '{}'", cloudEvent);
     websocketsTemplate.convertAndSend("/topic/messaging-bridge", cloudEvent);
     sender.send(cloudEvent);
   }
