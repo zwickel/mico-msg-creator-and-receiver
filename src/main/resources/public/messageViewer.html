@@ -15,18 +15,6 @@
                     console.log(cloudEvent);
                     var content = document.getElementById("textarea").value;
                     document.getElementById("textarea").value = cloudEvent.body + "\n\n" + content;
-
-                    var existingRow = document.getElementById(cloudEvent.body.correlationid);
-                    if (existingRow) {
-                        existingRow.insertCell(1).innerHTML = cloudEvent.body;
-                    } else {
-                        var table = document.getElementById("table")
-                        var row = table.insertRow(1);
-                        row.id = cloudEvent.body.id;
-                        row.insertCell(0).innerHTML = cloudEvent.body;
-                        // var outgoing = row.insertCell(1);
-                        // incoming.innerHTML = cloudEvent.body;
-                    }
                 });
             });
         });
@@ -36,12 +24,6 @@
 <body>
     <h4>Messages:</h4>
     <textarea id="textarea" rows="40" style="width:100%;"></textarea>
-    <table id="table" style="width:100%;">
-        <tr>
-            <th>outgoing</th>
-            <th>incoming</th>
-        </tr>
-    </table>
 </body>
 
 </html>
