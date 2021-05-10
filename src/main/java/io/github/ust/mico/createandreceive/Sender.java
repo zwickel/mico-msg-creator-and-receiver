@@ -25,7 +25,7 @@ public class Sender {
   private String topic;
 
   public void send(MicoCloudEventImpl<JsonNode> cloudEvent) {
-    this.send(cloudEvent, this.topic);
+    send(cloudEvent, topic);
   }
 
   public void send(MicoCloudEventImpl<JsonNode> cloudEvent, String topic) {

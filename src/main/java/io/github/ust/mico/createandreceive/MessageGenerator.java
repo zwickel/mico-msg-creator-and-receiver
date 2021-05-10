@@ -39,7 +39,7 @@ public class MessageGenerator {
     MicoCloudEventImpl<JsonNode> cloudEvent = new MicoCloudEventImpl<JsonNode>();
     cloudEvent.setRandomId();
     cloudEvent.setBaseCloudEvent(cloudEvent);
-    // cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
+    cloudEventManipulator.setMissingHeaderFields(cloudEvent, "");
     // Set return address.
     cloudEvent.setReturnTopic("car");
     log.info("Created msg: '{}'", cloudEvent);
